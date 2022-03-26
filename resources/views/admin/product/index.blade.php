@@ -13,7 +13,9 @@
                         <th>Id</th>
                         <th>Category</th>
                         <th>Name</th>
-                        <th>Selling Price</th>
+                        <th>Brand</th>
+                        <th>Description</th>
+                        <th>Price</th>
                         <th>Image</th>
                         <th>Action</th>
                     </tr>
@@ -24,12 +26,14 @@
                             <td>{{ $value->id }}</td>
                             <td>{{ $value->category->name }}</td>
                             <td>{{ $value->name }}</td>
+                            <td>{{ $value->brand }}</td>
+                            <td>{{Str:: limit($value->description,50)}}</td>
                             <td>{{ $value->price }}</td>
                             <td>
-                                <img src="{{ asset('assets/uploads/products/'.$value->image) }}" class="cate-image" alt="Image here">
+                                <img src="{{ asset('assets/uploads/products/'.$value->image) }}" class="category-image" alt="Image here">
                             </td>
                             <td>
-                                <a href="{{ url('edit-product/'.$value->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ url('edit-product/'.$value->id) }}" class="btn btn-sm">Edit</a>
                                 <a href="{{ url('delete-product/'.$value->id) }}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>

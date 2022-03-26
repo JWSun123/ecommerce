@@ -2,18 +2,18 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            <h4>Add Product</h4>
+        <div class="card-header text-white">
+            <h2>Add Product</h2>
         </div>
         <div class="card-body">
             <form action="{{ url('insert-product') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="">Category</label>+
-                        <select class="form-select" name="cate_id" >
+                        <label for="">Selecgt a Category</label>+
+                        <select class="form-select" name="category_id" >
                             <option value="">Select a Category</option>
-                            @foreach ($cateogry as $item)
+                            @foreach ($category as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
@@ -23,40 +23,24 @@
                         <input type="text" class="form-control" name="name">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Slug</label>
-                        <input type="text" class="form-control" name="slug">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="">Small Description</label>
-                        <textarea name="small_description" class="form-control"></textarea>
+                        <label for="">Brand</label>
+                        <input type="text" class="form-control" name="brand">
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="">Description</label>
                         <textarea name="description" class="form-control"></textarea>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Original Price</label>
-                        <input type="number" class="form-control" name="original_price" >
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Selling Price</label>
-                        <input type="number" class="form-control" name="selling_price">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Tax</label>
-                        <input type="number" class="form-control" name="tax" >
+                        <label for="">Price</label>
+                        <input type="number" step = "0.01" class="form-control" name="price">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">Quantity</label>
-                        <input type="number" class="form-control" name="qty">
+                        <input type="number" class="form-control" name="quantity">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">Status</label>
                         <input type="checkbox" name="status" >
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">trending</label>
-                        <input type="checkbox" name="trending">
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="">Meta Title</label>
@@ -69,13 +53,13 @@
 
                     <div class="col-md-12 mb-3">
                         <label for="">Meta Description</label>
-                        <textarea name="meta_description" rows="3" class="form-control"></textarea>
+                        <textarea name="meta_descrip" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="col-md-12">
                         <input type="file" name="image" class="form-control">
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Add Product</button>
                     </div>
                 </div>
             </form>

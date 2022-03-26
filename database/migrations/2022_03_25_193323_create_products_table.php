@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('category_id');
             $table->string('name');
+            $table->string('brand');
             $table->longText('description');
             $table->string('price');
             $table->string('image');
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->tinyInteger('status');
             $table->mediumText('meta_title');
             $table->mediumText('meta_keywords');
-            $table->mediumText('meta-descrip');
+            $table->mediumText('meta_descrip');
             $table->timestamps();
         });
     }

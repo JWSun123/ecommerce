@@ -29,10 +29,10 @@
             <p>Products</p>
         </a>
         </li>
-        <li class="nav-item {{ Request::is('add-products') ? 'active':'' }}">
-            <a class="nav-link" href="{{ url('add-products') }}">
+        <li class="nav-item {{ Request::is('add-product') ? 'active':'' }}">
+            <a class="nav-link" href="{{ url('add-product') }}">
             <i class="material-icons">add_circle</i>
-            <p>Add Products</p>
+            <p>Add Product</p>
             </a>
         </li>
         <li class="nav-item {{ Request::is('orders') ? 'active':'' }}">
