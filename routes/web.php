@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 
 Auth::routes();
 
@@ -38,4 +40,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route:: get('products',[App\Http\Controllers\Admin\ProductController::class, 'index']);
     Route::get('add-product', [App\Http\Controllers\Admin\ProductController::class, 'add']);
     Route::post('insert-product', [App\Http\Controllers\Admin\ProductController::class, 'insert']);
+    Route::get('edit-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'edit']);
+    Route::put('update-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update']);
+    Route::get('delete-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'delete']);
  });
