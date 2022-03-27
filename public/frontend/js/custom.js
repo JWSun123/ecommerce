@@ -1,7 +1,7 @@
  $(document).ready(function () {
 
-    loadcart();
-    loadwishlist();
+    // loadcart();
+    // loadwishlist();
 
     $.ajaxSetup({
         headers: {
@@ -54,7 +54,7 @@
             },
             success: function (response) {
                 swal(response.status);
-                loadcart();
+                // loadcart();
             }
         });
 

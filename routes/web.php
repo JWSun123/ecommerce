@@ -19,6 +19,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
+Route::get('category', [App\Http\Controllers\Frontend\FrontendController::class, 'category']);
+Route::get('view-category/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewCategory']);
+Route::get('view-product/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productView']);
+
+Route::post('add-to-cart', [App\Http\Controllers\Frontend\CartController::class, 'addProduct']);
+Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteProduct']);
+
+Route::middleware(['auth'])->group(function () {
+    Route:: get('cart', [App\Http\Controllers\Frontend\CartController::class, 'viewCart']);
+});
+
 
 Auth::routes();
 
@@ -43,4 +54,5 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('edit-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'edit']);
     Route::put('update-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update']);
     Route::get('delete-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'delete']);
+
  });

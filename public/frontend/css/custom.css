@@ -1,7 +1,9 @@
 *{
     font-family: 'Roboto', sans-serif;
 }
-
+.product-image{
+    height: 300px;
+}
 .checkout-form label{
     font-size: 12px;
     font-weight: 700;
