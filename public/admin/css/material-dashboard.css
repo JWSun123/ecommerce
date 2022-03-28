@@ -22,7 +22,7 @@
 *::after {
   box-sizing: border-box;
 }
-
+.form-select:focus{border-color:#86b7fe;outline:0;box-shadow:0 0 0 .25rem rgba(13,110,253,.25)}
 html {
   font-family: sans-serif;
   line-height: 1.15;

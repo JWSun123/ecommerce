@@ -42,9 +42,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Admin:
 Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index']);
+
+    //Order:
+    Route::get('orders', [App\Http\Controllers\Admin\OrderController::class, 'index']);
+    Route::get('admin/view-order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'editOrder']);
+    Route::put('update-order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);
+
+    //User:
+    Route::get('users', [App\Http\Controllers\Admin\DashboardController::class, 'users']);
+    Route::get('view-user/{id}', [App\Http\Controllers\Admin\DashboardController::class, 'viewUser']);
 
     //Category:
     Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index']);

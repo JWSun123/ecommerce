@@ -120,8 +120,49 @@
                                 </table>
                                 <h6 class="px-2">Total <span class="float-end"> ${{ $total }} </span></h6>
                                 <hr>
-                                <div id="paypal-button-container"></div>
-                                <button class="btn btn-primary">place order</button>
+
+                                <div class="row checkout-form">
+                                    <h5>Payment</h5>
+                                    <div class="col-md-6 mt-3">
+                                        Choose Stored Payment
+                                        <select name="storedpayment" id="storedpayment" class = "form-select storedpayment">
+                                            <option value="">Add New Payment Method</option>
+                                            @foreach ($payments as $payment)
+                                            <option value="{{ $payment->id }}">{{ $payment->card_number }}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                    Choose Payment Method
+                                    <select class="form-select" name = "method">
+                                        <option selected>Payment Method</option>
+                                        <option value="1">Credit Card</option>
+                                        <option value="2">Debit Card</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        Name<input type="text" required class="form-control username" name="username">
+                                        <span id="payment_username_error" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        Card Number<input type="text" required class="form-control cardnumber" name="cardnumber">
+                                        <span id="payment_cardnumber_error" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        Expiry Date<input type="month" required class="form-control expiry_date" name="expirydate">
+                                        <span id="payment_expirydate_error" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        CVV<input type="text" required class="form-control cvv" name="cvv">
+                                        <span id="payment_cvv_error" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <hr>
+                                <div class = "text-center">
+                                <button class="btn btn-warning w-100">Place Order</button>
+                                </div>
                             @else
                                 <h4 class="text-center">No products in cart</h4>
                             @endif

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -23,10 +24,27 @@ class CheckoutController extends Controller
         }
         $cartItems = Cart::where('user_id', Auth::id())->get();
 
-        return view('frontend.checkout', compact('cartItems'));
+        $payments = Payment::where('user_id', Auth::id())->get();
+
+        return view('frontend.checkout', compact('cartItems', 'payments'));
     }
 
     public function placeOrder(Request $request){
+        if($request->input('storedpayment') == NULL){
+            $payment = new Payment();
+            $payment->user_id = Auth::id();
+            $payment->payment_method = $request->input('method');
+            $payment->user_name = $request->input('username');
+            $payment->card_number = $request->input('cardnumber');
+            $payment->expiry_date = $request->input('expirydate');
+            $payment->cvv = $request->input('cvv');
+            $payment->save();
+        }
+        else{
+            $payment = Payment::find($request->input('storedpayment'));
+        }
+
+
         $order = new Order();
         $order->user_id = Auth::id();
         $order->name = $request->input('name');
@@ -39,8 +57,8 @@ class CheckoutController extends Controller
         $order->country = $request->input('country');
         $order->postalcode = $request->input('postalcode');
         $order->tracking_no = uniqid('QC');
-        $order->payment_mode = $request->input('payment_mode');
-        $order->payment_id = $request->input('payment_id');
+        $order->payment_mode = $payment->payment_method;
+        $order->payment_id = $payment->id;
 
         $total = 0;
         $cartItems_total = Cart::where('user_id', Auth::id())->get();
@@ -65,7 +83,7 @@ class CheckoutController extends Controller
             $product->quantity -= $item->prod_qty;
             $product->update();
         }
-        if(!Auth::user()->address == NULL){
+        if(Auth::user()->address == NULL){
             $user = User::where('id', Auth::id())->first();
             $user->name = $request->input('name');
             $user->email = $request->input('email');

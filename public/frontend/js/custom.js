@@ -1,6 +1,6 @@
  $(document).ready(function () {
 
-    // loadcart();
+     //loadcart();
     // loadwishlist();
 
     $.ajaxSetup({
