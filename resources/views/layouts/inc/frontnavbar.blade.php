@@ -17,9 +17,7 @@
                 shopping_cart
                 </span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
+
           @guest
             @if (Route::has('login'))
                 <li class="nav-item">
@@ -39,8 +37,8 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                    <a class="dropdown-item" href="{{ url('my-orders') }}">
-                        My Orders
+                    <a class="dropdown-item" href="{{ url('order-history') }}">
+                        Order History
                     </a>
                 </li>
                 <li>

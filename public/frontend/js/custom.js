@@ -21,17 +21,17 @@
         });
     }
 
-    function loadwishlist()
-    {
-        $.ajax({
-            method: "GET",
-            url: "/load-wislist-count",
-            success: function (response) {
-                $('.wishlist-count').html('');
-                $('.wishlist-count').html(response.count);
-            }
-        });
-    }
+    // function loadwishlist()
+    // {
+    //     $.ajax({
+    //         method: "GET",
+    //         url: "/load-wislist-count",
+    //         success: function (response) {
+    //             $('.wishlist-count').html('');
+    //             $('.wishlist-count').html(response.count);
+    //         }
+    //     });
+    // }
 
     $('.addToCartBtn').click(function (e) {
         e.preventDefault();
@@ -60,22 +60,22 @@
 
     });
 
-    $('.addToWishlist').click(function (e) {
-        e.preventDefault();
-        var product_id = $(this).closest('.product_data').find('.prod_id').val();
+    // $('.addToWishlist').click(function (e) {
+    //     e.preventDefault();
+    //     var product_id = $(this).closest('.product_data').find('.prod_id').val();
 
-        $.ajax({
-            method: "POST",
-            url: "/add-to-wishlist",
-            data: {
-                'product_id': product_id,
-            },
-            success: function (response) {
-                swal(response.status);
-                loadwishlist();
-            }
-        });
-    });
+    //     $.ajax({
+    //         method: "POST",
+    //         url: "/add-to-wishlist",
+    //         data: {
+    //             'product_id': product_id,
+    //         },
+    //         success: function (response) {
+    //             swal(response.status);
+    //             loadwishlist();
+    //         }
+    //     });
+    // });
 
     $(document).on('click','.increment-btn', function (e) {
         e.preventDefault();
@@ -103,7 +103,6 @@
         }
     });
 
-    // $('.delete-cart-item').click(function (e) {
     $(document).on('click','.delete-cart-item', function (e) {
         e.preventDefault();
 
@@ -115,7 +114,6 @@
                 'prod_id':prod_id,
             },
             success: function (response) {
-                // window.location.reload();
                 loadcart();
                 $('.cartitems').load(location.href + " .cartitems");
                 swal("", response.status, "success");
@@ -123,41 +121,40 @@
         });
     });
 
-    $(document).on('click','.remove-wishlist-item', function (e) {
-        e.preventDefault();
-        var prod_id = $(this).closest('.product_data').find('.prod_id').val();
+    // $(document).on('click','.remove-wishlist-item', function (e) {
+    //     e.preventDefault();
+    //     var prod_id = $(this).closest('.product_data').find('.prod_id').val();
 
-        $.ajax({
-            method: "POST",
-            url: "delete-wishlist-item",
-            data: {
-                'prod_id':prod_id,
-            },
-            success: function (response) {
-                // window.location.reload();
-                loadwishlist();
-                $('.wishlistitems').load(location.href + " .wishlistitems");
-                swal("", response.status, "success");
-            }
-        });
-    });
+    //     $.ajax({
+    //         method: "POST",
+    //         url: "delete-wishlist-item",
+    //         data: {
+    //             'prod_id':prod_id,
+    //         },
+    //         success: function (response) {
+    //             loadwishlist();
+    //             $('.wishlistitems').load(location.href + " .wishlistitems");
+    //             swal("", response.status, "success");
+    //         }
+    //     });
+    // });
 
     $(document).on('click','.changeQuantity', function (e) {
         e.preventDefault();
 
         var prod_id = $(this).closest('.product_data').find('.prod_id').val();
-        var qty = $(this).closest('.product_data').find('.qty-input').val();
+        var prod_qty = $(this).closest('.product_data').find('.qty-input').val();
         data = {
             'prod_id' : prod_id,
-            'prod_qty' : qty,
+            'prod_qty' : prod_qty,
         }
         $.ajax({
             method: "POST",
             url: "update-cart",
             data: data,
             success: function (response) {
-                $('.cartitems').load(location.href + " .cartitems");
-                // window.location.reload();
+                //$('.cartitems').load(location.href + " .cartitems");
+                window.location.reload();
             }
         });
 

@@ -25,9 +25,16 @@ Route::get('view-product/{id}', [App\Http\Controllers\Frontend\FrontendControlle
 
 Route::post('add-to-cart', [App\Http\Controllers\Frontend\CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteProduct']);
+Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updateCart']);
+
 
 Route::middleware(['auth'])->group(function () {
     Route:: get('cart', [App\Http\Controllers\Frontend\CartController::class, 'viewCart']);
+    Route::get('checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'index']);
+    Route::post('place-order', [App\Http\Controllers\Frontend\CheckoutController::class, 'placeOrder']);
+    Route::get('order-history', [App\Http\Controllers\Frontend\UserController::class, 'index']);
+    Route::get('view-order/{id}', [App\Http\Controllers\Frontend\UserController::class, 'viewOrder']);
+
 });
 
 

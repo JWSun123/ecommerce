@@ -59,4 +59,20 @@ class CartController extends Controller
         $cartcount = Cart::where('user_id', Auth::id())->count();
         return response()->json(['count'=> $cartcount]);
     }
+
+    public function updateCart(Request $request){
+        $prod_id = $request->input('prod_id');
+        $prod_qty = $request->input('prod_qty');
+        if(Auth::check()){
+            if(Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists()){
+                $cartItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+                $cartItem->prod_qty = $prod_qty;
+                $cartItem->update();
+                return response()->json(['status' => "Cart Updated Successfully"]);
+            }
+        }
+        else{
+            return response()->json(['status'=>'Login to Continue']);
+        }
+    }
 }

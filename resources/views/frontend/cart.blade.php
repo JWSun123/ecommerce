@@ -55,14 +55,14 @@ My Cart
                 @endforeach
             </div>
             <div class="card-footer">
-                <h6>Total Price : ${{ $total }}
+                <h5>Total Price : ${{ $total }}
 
                 <a href="{{ url('checkout') }}" class="btn btn-outline-primary float-end">Proceed to Checkout</a>
-                </h6>
+                </h5>
             </div>
         @else
             <div class="card-body text-center">
-                <h2>Your <i class="fa fa-shopping-cart"></i> Cart is empty</h2>
+                <h2>Your Cart is Empty</h2>
                 <a href="{{ url('category') }}" class="btn btn-outline-primary float-end">Continue Shopping</a>
             </div>
 
