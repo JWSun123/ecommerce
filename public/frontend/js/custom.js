@@ -57,7 +57,6 @@
                 // loadcart();
             }
         });
-
     });
 
     // $('.addToWishlist').click(function (e) {

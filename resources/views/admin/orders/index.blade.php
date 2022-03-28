@@ -16,6 +16,7 @@ Orders
                             <thead class = "table-primary">
                                 <tr>
                                     <th>Order Date</th>
+                                    <th>Order Number</th>
                                     <th>Tracking Number</th>
                                     <th>Total Amount</th>
                                     <th>Status</th>
@@ -26,6 +27,7 @@ Orders
                                 @foreach ($orders as $item)
                                     <tr>
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->tracking_no }}</td>
                                         <td>{{ $item->total_amount }}</td>
                                         <td>{{ $item->status == '0' ?'processing' : 'shipped' }}</td>
