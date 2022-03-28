@@ -121,9 +121,9 @@
                                 <h6 class="px-2">Total <span class="float-end"> ${{ $total }} </span></h6>
                                 <hr>
 
-                                <div class="row checkout-form">
+                                <div class="row checkout-form mt-5">
                                     <h5>Payment</h5>
-                                    <div class="col-md-6 mt-3">
+                                    <div class="col-md-6">
                                         Choose Stored Payment
                                         <select name="storedpayment" id="storedpayment" class = "form-select storedpayment">
                                             <option value="">Add New Payment Method</option>
@@ -132,7 +132,7 @@
                                         @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-6 mt-3">
+                                    <div class="col-md-6">
                                     Choose Payment Method
                                     <select class="form-select" name = "method">
                                         <option selected>Payment Method</option>
@@ -177,135 +177,4 @@
 @section('scripts')
 
     <script src='https://www.paypal.com/sdk/js?client-id=AZs2Jlax_z6GXz7Xo8iCfBF2PwwbatjT0fG0M--HtqzLpL8UZfLx_zbIB8SupDvz_kH98zh5OwL6QV94'> </script>
-
-    <script>
-        paypal.Buttons({
-            onClick: function(data, actions) {
-                if($.trim($('.name').val()).length == 0){
-                    error_name = 'Please enter Name';
-                    $('#name_error').text(error_name);
-                }else{
-                    error_name = '';
-                    $('#name_error').text(error_name);
-                }
-
-                if($.trim($('.email').val()).length == 0){
-                    error_email = 'Enter email address';
-                    $('#email_error').text(error_email);
-                }else{
-                    error_email = '';
-                    $('#email_error').text(error_email);
-                }
-
-                if($.trim($('.phone').val()).length == 0){
-                    error_phone = 'Please enter a valid phone number';
-                    $('#phone_error').text(error_phone);
-                }else{
-                    error_phone = '';
-                    $('#phone_error').text(error_phone);
-                }
-
-                if($.trim($('.address').val()).length == 0){
-                    error_address = 'Please enter address';
-                    $('#address_error').text(error_address);
-                }else{
-                    error_address = '';
-                    $('#address_error').text(error_address);
-                }
-                if($.trim($('.country').val()).length == 0){
-                    error_country = 'Please enter your country';
-                    $('#country_error').text(error_country);
-                }else{
-                    error_country = '';
-                    $('#country_error').text(error_country);
-                }
-
-                if($.trim($('.province').val()).length == 0){
-                    error_province = 'Please enter province';
-                    $('#province_error').text(error_province);
-                }else{
-                    error_province = '';
-                    $('#province_error').text(error_province);
-                }
-                if($.trim($('.city').val()).length == 0){
-                    error_city = 'Please enter city';
-                    $('#city_error').text(error_city);
-                }else{
-                    error_city = '';
-                    $('#city_error').text(error_city);
-                }
-
-                if($.trim($('.postalcode').val()).length == 0){
-                    error_postalcode = 'Please enter postalcode';
-                    $('#postalcode_error').text(error_postalcode);
-                }else{
-                    error_postalcode = '';
-                    $('#postalcode_error').text(error_postalcode);
-                }
-                if(error_name != ''|| error_phone != '' || error_address != ''
-                || error_apartment != '' || error_email != ''
-                || error_country != '' || error_province != ''
-                || error_city != '' || error_postalcode != '')
-                {
-                    swal("Information is required!");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            },
-            createOrder: function(data, actions) {
-                // This function sets up the details of the transaction, including the amount and line item details.
-                return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                    value: '{{ $total }}'
-                    }
-                }]
-                });
-            },
-            onApprove: function(data, actions) {
-                // This function captures the funds from the transaction.
-                return actions.order.capture().then(function(details) {
-                // This function shows a transaction success message to your buyer.
-                    var name = $('.name').val();
-                    var email = $('.email').val();
-                    var phone = $('.phone').val();
-                    var address = $('.address').val();
-                    var apartment = $('.apartment').val();
-                    var city = $('.city').val();
-                    var province = $('.province').val();
-                    var country = $('.country').val();
-                    var postalcode = $('.postalcode').val();
-
-                    $.ajax({
-                        method: "POST",
-                        url: "/place-order",
-                        data: {
-                            'name':name,
-                            'email':email,
-                            'phone':phone,
-                            'address':address,
-                            'apartment':apartment,
-                            'city':city,
-                            'province':province,
-                            'country':country,
-                            'postalcode':postalcode,
-                            'payment_mode':"Paid by Paypal",
-                            'payment_id':details.id,
-                        },
-                        success: function (response) {
-                            swal(response.status)
-                            .then((value) => {
-                                window.location.href = "/my-orders";
-                            });
-                        }
-                    });
-                });
-            }
-        }).render('#paypal-button-container');
-        //This function displays Smart Payment Buttons on your web page.
-    </script>
-
 @endsection
