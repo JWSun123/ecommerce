@@ -35,6 +35,22 @@
                     <hr>
                     <label class="fw-bold">Price: ${{ $product->price }}</label>
                     <hr>
+                    <label for="">Size</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Choose a Size</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+
+                    <label for="">Colour</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Choose a Color</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <hr>
                     @if($product->quantity > 0)
                         <label class="badge bg-info">In stock</label>
                     @else
