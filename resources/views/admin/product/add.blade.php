@@ -35,10 +35,6 @@
                         <input type="number" step = "0.01" class="form-control" name="price">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Quantity</label>
-                        <input type="number" class="form-control" name="quantity">
-                    </div>
-                    <div class="col-md-6 mb-3">
                         <label for="">Status</label>
                         <input type="checkbox" name="status" >
                     </div>

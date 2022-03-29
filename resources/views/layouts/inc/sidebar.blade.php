@@ -35,6 +35,12 @@
             <p>Add Product</p>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('attributes') ? 'active':'' }}">
+            <a class="nav-link" href="{{ url('attributes') }}">
+                <i class="material-icons">checkroom</i>
+                <p>Attributes</p>
+            </a>
+        </li>
         <li class="nav-item {{ Request::is('orders') ? 'active':'' }}">
           <a class="nav-link" href="{{ url('orders') }}">
             <i class="material-icons">shopping_cart</i>

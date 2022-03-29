@@ -16,7 +16,6 @@ class Product extends Model
         'description',
         'price',
         'image',
-        'quantity',
         'status',
         'meta_title',
         'meta_keywords',
@@ -25,6 +24,10 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+    
+    public function entry(){
+        return $this->hasMany(Entry::class);
     }
 }
 

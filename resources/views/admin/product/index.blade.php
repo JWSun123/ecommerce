@@ -7,7 +7,7 @@
             <hr>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -35,6 +35,8 @@
                             <td>
                                 <a href="{{ url('edit-product/'.$value->id) }}" class="btn btn-sm">Edit</a>
                                 <a href="{{ url('delete-product/'.$value->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{{ url('view-entry/'.$value->id) }}" class="btn btn-success btn-sm">View Entry</a>
+
                             </td>
                         </tr>
                     @endforeach

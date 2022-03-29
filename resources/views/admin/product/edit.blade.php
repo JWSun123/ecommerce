@@ -33,10 +33,6 @@
                         <input type="number" step = "0.01" class="form-control" name="price" value = "{{$product->price}}">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Quantity</label>
-                        <input type="number" class="form-control" name="quantity" value = "{{$product->quantity}}">
-                    </div>
-                    <div class="col-md-6 mb-3">
                         <label for="">Status</label>
                         <input type="checkbox" name="status" {{ $product->status == "1" ? 'checked' : '' }} >
                     </div>

@@ -28,6 +28,8 @@ Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::c
 Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updateCart']);
 
 
+
+
 Route::middleware(['auth'])->group(function () {
     Route:: get('cart', [App\Http\Controllers\Frontend\CartController::class, 'viewCart']);
     Route::get('checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'index']);
@@ -71,5 +73,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('edit-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'edit']);
     Route::put('update-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update']);
     Route::get('delete-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'delete']);
+
+    //Attributes:
+    Route::get('attributes', [App\Http\Controllers\Admin\AttributeController::class, 'index']);
+    Route::post('add-size', [App\Http\Controllers\Admin\AttributeController::class, 'addSize']);
+    Route::post('add-color', [App\Http\Controllers\Admin\AttributeController::class, 'addColor']);
+    Route::get('delete-size/{id}', [App\Http\Controllers\Admin\AttributeController::class, 'deleteSize']);
+    Route::get('delete-color/{id}', [App\Http\Controllers\Admin\AttributeController::class, 'deleteColor']);
+    Route::get('view-entry/{id}', [App\Http\Controllers\Admin\AttributeController::class, 'viewEntry']);
+    Route::post('add-entry',[App\Http\Controllers\Admin\AttributeController::class, 'addEntry']);
+    Route::get('delete-entry/{id}',[App\Http\Controllers\Admin\AttributeController::class, 'deleteEntry']);
 
  });
