@@ -177,6 +177,7 @@
             },
             success:function(response){
                 $('#select-color').val(response.color_id);
+                // $('#select-color').prop('disabled',false);
             }
         })
     })

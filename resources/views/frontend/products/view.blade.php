@@ -44,7 +44,7 @@
                     </select>
 
                     <label for="">Colour</label>
-                    <select class="form-select" aria-label="Default select example" id = "select-color" value = "">
+                    <select disabled class="form-select" aria-label="Default select example" id = "select-color" value = "">
                         <option selected>Choose a Color</option>
                         @foreach ($entries as $entry)
                         <option value="{{$entry->color->id}}">{{$entry->color->color}}</option>
