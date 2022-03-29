@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('place-order', [App\Http\Controllers\Frontend\CheckoutController::class, 'placeOrder']);
     Route::get('order-history', [App\Http\Controllers\Frontend\UserController::class, 'index']);
     Route::get('view-order/{id}', [App\Http\Controllers\Frontend\UserController::class, 'viewOrder']);
-
+    Route::post('show-payment', [App\Http\Controllers\Frontend\CheckoutController::class, 'showPayment']);
 });
 
 

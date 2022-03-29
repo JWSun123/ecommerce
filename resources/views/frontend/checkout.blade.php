@@ -125,7 +125,7 @@
                                     <h5>Payment</h5>
                                     <div class="col-md-6">
                                         Choose Stored Payment
-                                        <select name="storedpayment" id="storedpayment" class = "form-select storedpayment">
+                                        <select name="storedpayment" class = "form-select storedpayment" id = "storedpayment">
                                             <option value="">Add New Payment Method</option>
                                             @foreach ($payments as $payment)
                                             <option value="{{ $payment->id }}">{{ $payment->card_number }}</option>
@@ -134,26 +134,26 @@
                                     </div>
                                     <div class="col-md-6">
                                     Choose Payment Method
-                                    <select class="form-select" name = "method">
+                                    <select class="form-select" name = "method" value = '' id = "method">
                                         <option selected>Payment Method</option>
                                         <option value="1">Credit Card</option>
                                         <option value="2">Debit Card</option>
                                     </select>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        Name<input type="text" required class="form-control username" name="username">
+                                        Name<input type="text" required class="form-control username" name="username" id = "username">
                                         <span id="payment_username_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        Card Number<input type="text" required class="form-control cardnumber" name="cardnumber">
+                                        Card Number<input type="text" required class="form-control cardnumber" name="cardnumber" id = "cardnumber">
                                         <span id="payment_cardnumber_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        Expiry Date<input type="month" required class="form-control expiry_date" name="expirydate">
+                                        Expiry Date<input type="month" required class="form-control expiry_date" name="expirydate" id = "expirydate">
                                         <span id="payment_expirydate_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        CVV<input type="text" required class="form-control cvv" name="cvv">
+                                        CVV<input type="text" required class="form-control cvv" name="cvv" id="cvv">
                                         <span id="payment_cvv_error" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -178,3 +178,4 @@
 
     <script src='https://www.paypal.com/sdk/js?client-id=AZs2Jlax_z6GXz7Xo8iCfBF2PwwbatjT0fG0M--HtqzLpL8UZfLx_zbIB8SupDvz_kH98zh5OwL6QV94'> </script>
 @endsection
+

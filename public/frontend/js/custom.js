@@ -59,23 +59,6 @@
         });
     });
 
-    // $('.addToWishlist').click(function (e) {
-    //     e.preventDefault();
-    //     var product_id = $(this).closest('.product_data').find('.prod_id').val();
-
-    //     $.ajax({
-    //         method: "POST",
-    //         url: "/add-to-wishlist",
-    //         data: {
-    //             'product_id': product_id,
-    //         },
-    //         success: function (response) {
-    //             swal(response.status);
-    //             loadwishlist();
-    //         }
-    //     });
-    // });
-
     $(document).on('click','.increment-btn', function (e) {
         e.preventDefault();
 
@@ -158,5 +141,31 @@
         });
 
     });
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#storedpayment').on('change',function(e){
+
+        var payment_id = $(this).val();
+
+        $.ajax({
+            method:"POST",
+            url:"show-payment",
+            data:{
+                'payment_id':payment_id,
+            },
+            success:function(response){
+                $('#method').val(response.payment_method);
+                $("#username").val(response.user_name);
+                $("#cardnumber").val(response.card_number);
+                $("#expirydate").val(response.expiry_date);
+                $("#cvv").val(response.cvv);
+            }
+        })
+    })
+
 
 });
