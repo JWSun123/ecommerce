@@ -36,19 +36,19 @@
                     <label class="fw-bold">Price: ${{ $product->price }}</label>
                     <hr>
                     <label for="">Size</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" id = "select-size" name = "select-size">
                         <option selected>Choose a Size</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        @foreach ($entries as $entry)
+                        <option data-id = "{{$entry->id}}" value="{{$entry->size->id}}">{{$entry->size->size}}</option>
+                        @endforeach
                     </select>
 
                     <label for="">Colour</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" id = "select-color" value = "">
                         <option selected>Choose a Color</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        @foreach ($entries as $entry)
+                        <option value="{{$entry->color->id}}">{{$entry->color->color}}</option>
+                        @endforeach
                     </select>
                     <hr>
                     @if($product->quantity > 0)

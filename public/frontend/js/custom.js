@@ -167,6 +167,19 @@
             }
         })
     })
+    $('#select-size').on('change', function(e){
+        var entry_id = $(this).find(":selected").data('id');
+        $.ajax({
+            method:"POST",
+            url:"select-size",
+            data:{
+                'entry_id': entry_id,
+            },
+            success:function(response){
+                $('#select-color').val(response.color_id);
+            }
+        })
+    })
 
 
 });

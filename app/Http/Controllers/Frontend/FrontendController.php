@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Size;
+use App\Models\Entry;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 {
@@ -26,6 +28,16 @@ class FrontendController extends Controller
 
     public function productView($id){
         $product = Product::where('id', $id)->first();
-        return view('frontend.products.view', compact('product'));
+        $entries = Entry::where('product_id', $id)->get();
+
+        return view('frontend.products.view', compact('product','entries'));
+    }
+    public function selectSize(Request $request){
+        $entry_id = $request->input('entry_id');
+        $entry = Entry::find($entry_id);
+        return response()->json([
+            'color_id'=>$entry->color_id,
+            'color'=>$entry->color->color,
+        ]);
     }
 }
