@@ -5,7 +5,7 @@
         <div class="card-header text-white">
             <h2>Add Category</h2>
         </div>
-        <div class="card-body">
+        <div class="card-body text-dark">
             <form action="{{ url('insert-category') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">

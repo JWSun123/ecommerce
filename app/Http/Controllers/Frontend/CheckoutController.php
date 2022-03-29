@@ -101,4 +101,17 @@ class CheckoutController extends Controller
         Cart::destroy($cartItems);
         return redirect('/')->with('status', 'Order Placed Successfully! Order No: '.$order->id);
     }
+
+    public function showPayment(Request $request){
+        $payment_id = $request->input('payment_id');
+        $payment = Payment::where('id', $payment_id)->first();
+        return response()->json([
+            'payment_method'=>$payment->payment_method,
+            'user_name'=>$payment->user_name,
+            'card_number'=>$payment->card_number,
+            'expiry_date'=>$payment->expiry_date,
+            'cvv'=>$payment->cvv,
+        ]);
+    }
+
 }
