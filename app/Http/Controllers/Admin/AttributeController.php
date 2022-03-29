@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Size;
 use App\Models\Color;
+use App\Models\Entry;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,5 +41,29 @@ class AttributeController extends Controller
         $color = Color::find($id);
         $color->delete();
         return redirect('attributes')->with('status',"Color Deleted Successfully");
+    }
+
+    public function viewEntry($id){
+        $entries = Entry::where('product_id', $id)->get();
+        $product_id = $id;
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view('admin.attribute.view', compact('entries','sizes','colors','product_id'));
+    }
+
+    public function addEntry(Request $request){
+        $entry = new Entry();
+        $entry->product_id = $request->input('product_id');
+        $entry->size_id = $request->input('size_id');
+        $entry->color_id = $request->input('color_id');
+        $entry->quantity = $request->input('quantity');
+        $entry->save();
+        return redirect('view-entry/'.$entry->product_id)->with('status', "Product Entry Added Successfully!");
+    }
+
+    public function deleteEntry($id){
+        $entry = Entry::find($id);
+        $entry->delete();
+        return redirect('view-entry/'.$entry->product_id)->with('status', "Product Entry Deleted Successfully!");
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header text-white">
-            <h4>Attributes</h4>
+            <h4>Entries</h4>
             <hr>
         </div>
         <div class="card-body">
@@ -32,7 +32,7 @@
                 <form action = "{{ url('add-size') }}" method = "post">
                     @csrf
                     <input type="text" name="size">
-                    <button type='submit' class="btn btn-primary btn-sm">Add Size</button>
+                    <button type='submit' class="btn btn-success btn-sm ml-3">Add Size</button>
                 </form>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <form action = "{{ url('add-color') }}" method = "post">
                 @csrf
                 <input type="text" name="color">
-                <button type='submit' class="btn btn-primary btn-sm">Add Color</button>
+                <button type='submit' class="btn btn-success btn-sm ml-3">Add Color</button>
             </form>
         </div>
     </div>

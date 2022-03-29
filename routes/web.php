@@ -80,5 +80,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('add-color', [App\Http\Controllers\Admin\AttributeController::class, 'addColor']);
     Route::get('delete-size/{id}', [App\Http\Controllers\Admin\AttributeController::class, 'deleteSize']);
     Route::get('delete-color/{id}', [App\Http\Controllers\Admin\AttributeController::class, 'deleteColor']);
+    Route::get('view-entry/{id}', [App\Http\Controllers\Admin\AttributeController::class, 'viewEntry']);
+    Route::post('add-entry',[App\Http\Controllers\Admin\AttributeController::class, 'addEntry']);
+    Route::get('delete-entry/{id}',[App\Http\Controllers\Admin\AttributeController::class, 'deleteEntry']);
 
  });
