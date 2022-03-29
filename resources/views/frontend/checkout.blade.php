@@ -134,26 +134,26 @@
                                     </div>
                                     <div class="col-md-6">
                                     Choose Payment Method
-                                    <select class="form-select" name = "method" value = '' id = "method">
+                                    <select class="form-select paymentinfo" name = "method" value = '' id = "method">
                                         <option selected>Payment Method</option>
                                         <option value="1">Credit Card</option>
                                         <option value="2">Debit Card</option>
                                     </select>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        Name<input type="text" required class="form-control username" name="username" id = "username">
+                                        Name<input type="text" required class="form-control username paymentinfo" name="username" id = "username">
                                         <span id="payment_username_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        Card Number<input type="text" required class="form-control cardnumber" name="cardnumber" id = "cardnumber">
+                                        Card Number<input type="text" required class="form-control cardnumber paymentinfo" name="cardnumber" id = "cardnumber">
                                         <span id="payment_cardnumber_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        Expiry Date<input type="month" required class="form-control expiry_date" name="expirydate" id = "expirydate">
+                                        Expiry Date<input type="month" required class="form-control expiry_date paymentinfo" name="expirydate" id = "expirydate">
                                         <span id="payment_expirydate_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        CVV<input type="text" required class="form-control cvv" name="cvv" id="cvv">
+                                        CVV<input type="text" required class="form-control cvv paymentinfo" name="cvv" id="cvv">
                                         <span id="payment_cvv_error" class="text-danger"></span>
                                     </div>
                                 </div>

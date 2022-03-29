@@ -163,6 +163,7 @@
                 $("#cardnumber").val(response.card_number);
                 $("#expirydate").val(response.expiry_date);
                 $("#cvv").val(response.cvv);
+                $('.paymentinfo').prop('disabled', true);
             }
         })
     })
