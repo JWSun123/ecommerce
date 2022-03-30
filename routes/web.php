@@ -59,6 +59,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     //User:
     Route::get('users', [App\Http\Controllers\Admin\DashboardController::class, 'users']);
     Route::get('view-user/{id}', [App\Http\Controllers\Admin\DashboardController::class, 'viewUser']);
+    Route::put('update-role/{id}', [App\Http\Controllers\Admin\DashboardController::class, 'updateRole']);
 
     //Category:
     Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index']);
