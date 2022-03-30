@@ -60,7 +60,7 @@
                     {{-- @endif --}}
                     <div class="row mt-2">
                         <div class="col-md-3">
-                            <input type="hidden" value="{{ $product->id }}" class="prod_id">
+                            <input type="hidden" value="{{ $product->id }}" class="prod_id" id="prod_id">
                             <label for="Quantity">Quantity</label>
                             <div class="input-group text-center mb-3" style="width:130px;">
                                 <button class="input-group-text decrement-btn">-</button>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-md-9">
                             <br/>
-                                <button type="button" @if($product->quantity <= 0) @disabled(true) @endif class="btn btn-primary me-3 addToCartBtn float-start">Add to Cart <span class="material-icons">
+                                <button type="button"  class="btn btn-primary me-3 addToCartBtn float-start">Add to Cart <span class="material-icons">
                                     add_shopping_cart
                                     </span></button>
                         </div>

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Entry;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +19,12 @@ class CheckoutController extends Controller
     public function index(){
         $old_cartItems = Cart::where('user_id', Auth::id())->get();
         foreach($old_cartItems as $item){
-            if(!Product::where('id',$item->prod_id)->where('quantity', ">=", $item->prod_qty)->exists()){
-                $removeItem = Cart::where('user_id', Auth::id())->where('prod_id',$item->prod_id)->first();
+            if(!DB::table('entries')
+            ->select('entries.id','quantity')
+            ->join('carts','entries.id','=','carts.entry_id')
+            ->where('entries.id',$item->entry_id)->where('quantity', ">=", $item->entry->quantity)
+            ->exists()){
+                $removeItem = Cart::where('user_id', Auth::id())->where('entry_id',$item->entry_id)->first();
                 $removeItem->delete();
             }
         }
@@ -64,7 +70,7 @@ class CheckoutController extends Controller
         $cartItems_total = Cart::where('user_id', Auth::id())->get();
         foreach($cartItems_total as $item)
         {
-            $total += $item->products->price * $item->prod_qty;
+            $total += $item->entry->product->price * $item->prod_qty;
         }
         $order->total_amount = $total;
         $order->save();
@@ -75,13 +81,13 @@ class CheckoutController extends Controller
         foreach($cartItems as $item){
             OrderItem::create([
                 'order_id'=>$order->id,
-                'prod_id'=>$item->prod_id,
-                'price'=>$item->products->price,
+                'entry_id'=>$item->entry_id,
+                'price'=>$item->entry->product->price,
                 'quantity'=>$item->prod_qty,
             ]);
-            $product = Product::where('id', $item->prod_id)->first();
-            $product->quantity -= $item->prod_qty;
-            $product->update();
+            $entry = Entry::where('id', $item->entry_id)->first();
+            $entry->quantity -= $item->prod_qty;
+            $entry->update();
         }
         if(Auth::user()->address == NULL){
             $user = User::where('id', Auth::id())->first();

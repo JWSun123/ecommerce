@@ -36,7 +36,7 @@
     $('.addToCartBtn').click(function (e) {
         e.preventDefault();
 
-        var product_id = $(this).closest('.product_data').find('.prod_id').val();
+        var entry_id = $(this).closest('.product_data').find('.prod_id').val();
         var product_qty = $(this).closest('.product_data').find('.qty-input').val();
 
         $.ajaxSetup({
@@ -49,11 +49,12 @@
             method: "POST",
             url: "/add-to-cart",
             data: {
-                'product_id': product_id,
+                'entry_id': entry_id,
                 'product_qty' : product_qty,
             },
             success: function (response) {
                 swal(response.status);
+
                 // loadcart();
             }
         });
@@ -88,12 +89,12 @@
     $(document).on('click','.delete-cart-item', function (e) {
         e.preventDefault();
 
-        var prod_id = $(this).closest('.product_data').find('.prod_id').val();
+        var entry_id = $(this).closest('.product_data').find('.prod_id').val();
         $.ajax({
             method: "POST",
             url: "delete-cart-item",
             data: {
-                'prod_id':prod_id,
+                'entry_id':entry_id,
             },
             success: function (response) {
                 loadcart();
@@ -124,10 +125,10 @@
     $(document).on('click','.changeQuantity', function (e) {
         e.preventDefault();
 
-        var prod_id = $(this).closest('.product_data').find('.prod_id').val();
+        var entry_id = $(this).closest('.product_data').find('.prod_id').val();
         var prod_qty = $(this).closest('.product_data').find('.qty-input').val();
         data = {
-            'prod_id' : prod_id,
+            'entry_id' : entry_id,
             'prod_qty' : prod_qty,
         }
         $.ajax({
@@ -218,6 +219,8 @@
                     $('#out_of_stock').show();
                     $('#quantity_instock').css('display','none');
                 }
+                $('#prod_id').val(response.entry.id);
+                console.log(response.entry.id);
             }
         })
     })

@@ -110,10 +110,10 @@
                                     <tbody>
                                         @foreach ($cartItems as $item)
                                         <tr>
-                                            @php $total += ($item->products->price * $item->prod_qty) @endphp
-                                            <td>{{ $item->products->name }}</td>
+                                            @php $total += ($item->entry->product->price * $item->prod_qty) @endphp
+                                            <td>{{ $item->entry->product->name }}</td>
                                             <td>{{ $item->prod_qty }}</td>
-                                            <td>${{ $item->products->price }}</td>
+                                            <td>${{ $item->entry->product->price }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -12,7 +12,7 @@ class OrderItem extends Model
     protected $table= 'order_items';
     protected $fillable = [
         'order_id',
-        'prod_id',
+        'entry_id',
         'price',
         'quantity',
     ];
@@ -22,9 +22,9 @@ class OrderItem extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function products(): BelongsTo
+    public function entries(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'prod_id', 'id');
+        return $this->belongsTo(Entry::class, 'entry_id', 'id');
     }
 
 }
