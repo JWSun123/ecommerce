@@ -60,7 +60,7 @@
                     {{-- @endif --}}
                     <div class="row mt-2">
                         <div class="col-md-3">
-                            <input type="hidden" value="{{ $product->id }}" class="prod_id">
+                            <input type="hidden" value="{{ $product->id }}" class="prod_id" id="prod_id">
                             <label for="Quantity">Quantity</label>
                             <div class="input-group text-center mb-3" style="width:130px;">
                                 <button class="input-group-text decrement-btn">-</button>

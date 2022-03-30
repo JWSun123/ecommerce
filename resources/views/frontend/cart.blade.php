@@ -26,27 +26,35 @@ My Cart
                 @foreach ($cartItems as $item)
                     <div class="row product_data">
                         <div class="col-md-2 my-auto">
-                            <img src="{{ asset('assets/uploads/products/'.$item->products->image) }}" height="70px" width="70px" alt="Image here">
-                        </div>
-                        <div class="col-md-3 my-auto">
-                            <h6>{{ $item->products->name }}</h6>
+                            <img src="{{ asset('assets/uploads/products/'.$item->entry->product->image) }}" height="70px" width="70px" alt="Image here">
                         </div>
                         <div class="col-md-2 my-auto">
-                            <h6> ${{ $item->products->price }}</h6>
+                            <h6>{{ $item->entry->product->name }}</h6>
                         </div>
-                        <div class="col-md-3 my-auto">
-                            <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
-                            {{-- @if( $item->products->quantity >= $item->prod_qty) --}}
+
+                        <div class="col-md-1 my-auto">
+                            <h6>{{ $item->entry->size->size }}</h6>
+                        </div>
+                        <div class="col-md-1 my-auto">
+                            <h6>{{ $item->entry->color->color }}</h6>
+                        </div>
+
+                        <div class="col-md-2 my-auto">
+                            <h6> ${{ $item->entry->product->price }}</h6>
+                        </div>
+                        <div class="col-md-2 my-auto">
+                            <input type="hidden" class="prod_id" value="{{ $item->entry_id }}">
+                            @if( $item->entry->quantity >= $item->prod_qty)
                                 <label for="Quantity">Quantity</label>
                                 <div class="input-group text-center mb-3" style="width:130px;">
                                     <button class="input-group-text changeQuantity decrement-btn">-</button>
                                     <input type="text" name="quantity" class="form-control qty-input text-center" value="{{ $item->prod_qty }}" >
                                     <button class="input-group-text changeQuantity increment-btn">+</button>
                                 </div>
-                                @php $total += $item->products->price * $item->prod_qty ; @endphp
-                            {{-- @else
+                                @php $total += $item->entry->product->price * $item->prod_qty ; @endphp
+                            @else
                                 <h6>Out of Stock</h6>
-                            @endif --}}
+                            @endif
                         </div>
                         <div class="col-md-2 my-auto">
                             <button class="btn btn-danger delete-cart-item"> <i class="fa fa-trash"></i> Remove</button>

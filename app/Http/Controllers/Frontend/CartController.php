@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use id;
 use App\Models\Cart;
+use App\Models\Entry;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,18 +13,18 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function addProduct(Request $request){
-        $prod_id = $request->input('product_id');
+        $entry_id = $request->input('entry_id');
         $prod_qty = $request->input('product_qty');
 
         if(Auth::check()){
-            $prod_check = Product::where('id', $prod_id)->first();
+            $prod_check = Entry::where('id', $entry_id)->first();
             if ($prod_check){
-                if(Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists()){
+                if(Cart::where('entry_id', $entry_id)->where('user_id', Auth::id())->exists()){
                     return response()->json(['status'=>$prod_check->name." Already in the Cart!"]);
                 }
                 else{
                     $cartItem = new Cart();
-                    $cartItem->prod_id = $prod_id;
+                    $cartItem->entry_id = $entry_id;
                     $cartItem->user_id = Auth::id();
                     $cartItem->prod_qty = $prod_qty;
                     $cartItem->save();
@@ -44,9 +45,9 @@ class CartController extends Controller
 
     public function deleteProduct(Request $request){
         if (Auth::check()){
-            $prod_id = $request->input('prod_id');
-            if(Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists()){
-                $cartItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+            $entry_id = $request->input('entry_id');
+            if(Cart::where('entry_id', $entry_id)->where('user_id', Auth::id())->exists()){
+                $cartItem = Cart::where('entry_id', $entry_id)->where('user_id', Auth::id())->first();
                 $cartItem->delete();
                 return response()->json(['status' => "Item Deleted Successfully"]);
             }
@@ -61,11 +62,11 @@ class CartController extends Controller
     }
 
     public function updateCart(Request $request){
-        $prod_id = $request->input('prod_id');
+        $entry_id = $request->input('entry_id');
         $prod_qty = $request->input('prod_qty');
         if(Auth::check()){
-            if(Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists()){
-                $cartItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+            if(Cart::where('entry_id', $entry_id)->where('user_id', Auth::id())->exists()){
+                $cartItem = Cart::where('entry_id', $entry_id)->where('user_id', Auth::id())->first();
                 $cartItem->prod_qty = $prod_qty;
                 $cartItem->update();
                 return response()->json(['status' => "Cart Updated Successfully"]);
