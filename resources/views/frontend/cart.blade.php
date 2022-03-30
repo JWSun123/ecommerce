@@ -36,7 +36,7 @@ My Cart
                         </div>
                         <div class="col-md-3 my-auto">
                             <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
-                            @if( $item->products->quantity >= $item->prod_qty)
+                            {{-- @if( $item->products->quantity >= $item->prod_qty) --}}
                                 <label for="Quantity">Quantity</label>
                                 <div class="input-group text-center mb-3" style="width:130px;">
                                     <button class="input-group-text changeQuantity decrement-btn">-</button>
@@ -44,9 +44,9 @@ My Cart
                                     <button class="input-group-text changeQuantity increment-btn">+</button>
                                 </div>
                                 @php $total += $item->products->price * $item->prod_qty ; @endphp
-                            @else
+                            {{-- @else
                                 <h6>Out of Stock</h6>
-                            @endif
+                            @endif --}}
                         </div>
                         <div class="col-md-2 my-auto">
                             <button class="btn btn-danger delete-cart-item"> <i class="fa fa-trash"></i> Remove</button>

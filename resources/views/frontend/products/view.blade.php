@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-md-9">
                             <br/>
-                                <button type="button" @if($product->quantity <= 0) @disabled(true) @endif class="btn btn-primary me-3 addToCartBtn float-start">Add to Cart <span class="material-icons">
+                                <button type="button"  class="btn btn-primary me-3 addToCartBtn float-start">Add to Cart <span class="material-icons">
                                     add_shopping_cart
                                     </span></button>
                         </div>
