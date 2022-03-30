@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header text-white">
             <h4>Users</h4>
             <hr>
         </div>
@@ -11,6 +11,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Role</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Action</th>
@@ -20,6 +21,7 @@
                     @foreach($users as $value)
                         <tr>
                             <td>{{ $value->id }}</td>
+                            <td>{{ $value->role_as == 0? "Customer":"Admin" }}</td>
                             <td>{{ $value->name }}</td>
                             <td>{{ $value->email }}</td>
                             <td>

@@ -12,7 +12,7 @@ Ecommerce
         <div class="row">
             <div class="mb-4">
                 <h2>Products</h2>
-            </div>           
+            </div>
             @foreach ($products as $product)
                 <div class="col-md-3">
                     <a href="{{ url('view-product/'.$product->id) }}">
@@ -20,7 +20,7 @@ Ecommerce
                             <img class = "product-image" src="{{ asset('assets/uploads/products/'.$product->image) }}" alt="Product image">
                             <div class="card-body">
                                 <h5>{{ $product->name }}</h5>
-                                <span class="float-start">{{ $product->price }}</span>
+                                <span class="float-start">${{ $product->price }}</span>
                                 <span class="float-end">{{ $product->brand }}</span>
                             </div>
                         </div>
