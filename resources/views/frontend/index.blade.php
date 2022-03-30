@@ -10,11 +10,13 @@ Ecommerce
 <div class="py-5">
     <div class="container">
         <div class="row">
-            <h2>Products</h2>
+            <div class="mb-4">
+                <h2>Products</h2>
+            </div>           
             @foreach ($products as $product)
                 <div class="col-md-3">
                     <a href="{{ url('view-product/'.$product->id) }}">
-                        <div class="card">
+                        <div class="card zoom">
                             <img class = "product-image" src="{{ asset('assets/uploads/products/'.$product->image) }}" alt="Product image">
                             <div class="card-body">
                                 <h5>{{ $product->name }}</h5>

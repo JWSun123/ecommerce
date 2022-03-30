@@ -35,11 +35,29 @@
                     <hr>
                     <label class="fw-bold">Price: ${{ $product->price }}</label>
                     <hr>
-                    @if($product->quantity > 0)
-                        <label class="badge bg-info">In stock</label>
-                    @else
-                        <label class="badge bg-danger">Out of stock</label>
-                    @endif
+
+                    {{-- @foreach ($entries as $entry)
+                    {{$entry}}
+                    @endforeach --}}
+                    <label for="">Size</label>
+                    <select class="form-select" aria-label="Default select example" id = "select-size" name = "select-size">
+                        <option selected>Choose a Size</option>
+                        @foreach ($entries as $entry)
+                        <option data-prod = "{{$product->id}}" data-size = "{{$entry[0]->size_id}}" value="{{$entry[0]->size_id}}">{{$entry[0]->size->size}}</option>
+                        @endforeach
+                    </select>
+
+                    <label for="">Colour</label>
+                    <select disabled class="form-select" aria-label="Default select example" id = "select-color" value = "">
+                        <option selected>Choose a Color</option>
+                    </select>
+                    <hr>
+                    <input id="get_quantity" type="hidden" value="">
+                    {{-- @if($product->quantity > 0) --}}
+                        <label class="badge bg-info" id="quantity_instock" style="display:none">In stock</label>
+                    {{-- @else --}}
+                        <label class="badge bg-danger" id="out_of_stock" style="display:none">Out of stock</label>
+                    {{-- @endif --}}
                     <div class="row mt-2">
                         <div class="col-md-3">
                             <input type="hidden" value="{{ $product->id }}" class="prod_id">
