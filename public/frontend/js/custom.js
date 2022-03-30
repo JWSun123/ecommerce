@@ -168,16 +168,46 @@
         })
     })
     $('#select-size').on('change', function(e){
-        var entry_id = $(this).find(":selected").data('id');
+        var product_id = $(this).find(":selected").data('prod');
+        var size_id = $(this).find(":selected").data('size');
+        $('#select-color .color').remove();
+        $('#select-color').prop('disabled', false);
         $.ajax({
             method:"POST",
             url:"select-size",
             data:{
-                'entry_id': entry_id,
+                'product_id': product_id,
+                'size_id': size_id,
             },
             success:function(response){
-                $('#select-color').val(response.color_id);
-                // $('#select-color').prop('disabled',false);
+                //console.log(response);
+                $.each(response.entries_color, function(index, item){
+                    //console.log(item.color_id);
+                    let newOption = $('<option class = "color"></option>')
+                    newOption.val(item.color_id)
+                    newOption.text(item.color)
+                    $('#select-color').append(newOption)
+                })
+            }
+        })
+    })
+
+    $("#select-color").on('change', function(e){
+        var product_id = $('#select-size').find(":selected").data('prod');
+        var size_id = $('#select-size').find(":selected").data('size');
+        var color_id = $(this).val();
+        console.log(product_id, size_id, color_id);
+        $.ajax({
+            method:"POST",
+            url:"get-quantity",
+            data:{
+                'product_id': product_id,
+                'size_id': size_id,
+                'color_id':color_id,
+            },
+            success:function(response){
+                console.log(response)
+                
             }
         })
     })

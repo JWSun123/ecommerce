@@ -35,20 +35,21 @@
                     <hr>
                     <label class="fw-bold">Price: ${{ $product->price }}</label>
                     <hr>
+
+                    {{-- @foreach ($entries as $entry)
+                    {{$entry}}
+                    @endforeach --}}
                     <label for="">Size</label>
                     <select class="form-select" aria-label="Default select example" id = "select-size" name = "select-size">
                         <option selected>Choose a Size</option>
                         @foreach ($entries as $entry)
-                        <option data-id = "{{$entry->id}}" value="{{$entry->size->id}}">{{$entry->size->size}}</option>
+                        <option data-prod = "{{$product->id}}" data-size = "{{$entry[0]->size_id}}" value="{{$entry[0]->size_id}}">{{$entry[0]->size->size}}</option>
                         @endforeach
                     </select>
 
                     <label for="">Colour</label>
                     <select disabled class="form-select" aria-label="Default select example" id = "select-color" value = "">
                         <option selected>Choose a Color</option>
-                        @foreach ($entries as $entry)
-                        <option value="{{$entry->color->id}}">{{$entry->color->color}}</option>
-                        @endforeach
                     </select>
                     <hr>
                     @if($product->quantity > 0)

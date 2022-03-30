@@ -23,7 +23,7 @@ Route::get('category', [App\Http\Controllers\Frontend\FrontendController::class,
 Route::get('view-category/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewCategory']);
 Route::get('view-product/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productView']);
 Route::post('view-product/select-size', [App\Http\Controllers\Frontend\FrontendController::class, 'selectSize']);
-
+Route::post('view-product/get-quantity',[App\Http\Controllers\Frontend\FrontendController::class, 'getQuantity']);
 
 Route::post('add-to-cart', [App\Http\Controllers\Frontend\CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteProduct']);
