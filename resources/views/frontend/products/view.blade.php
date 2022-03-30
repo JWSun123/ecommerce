@@ -52,11 +52,12 @@
                         <option selected>Choose a Color</option>
                     </select>
                     <hr>
-                    @if($product->quantity > 0)
-                        <label class="badge bg-info">In stock</label>
-                    @else
-                        <label class="badge bg-danger">Out of stock</label>
-                    @endif
+                    <input id="get_quantity" type="hidden" value="">
+                    {{-- @if($product->quantity > 0) --}}
+                        <label class="badge bg-info" id="quantity_instock" style="display:none">In stock</label>
+                    {{-- @else --}}
+                        <label class="badge bg-danger" id="out_of_stock" style="display:none">Out of stock</label>
+                    {{-- @endif --}}
                     <div class="row mt-2">
                         <div class="col-md-3">
                             <input type="hidden" value="{{ $product->id }}" class="prod_id">

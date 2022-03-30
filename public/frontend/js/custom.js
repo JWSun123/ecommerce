@@ -196,6 +196,7 @@
         var product_id = $('#select-size').find(":selected").data('prod');
         var size_id = $('#select-size').find(":selected").data('size');
         var color_id = $(this).val();
+        $('#select-size .size').remove();
         console.log(product_id, size_id, color_id);
         $.ajax({
             method:"POST",
@@ -206,8 +207,17 @@
                 'color_id':color_id,
             },
             success:function(response){
-                console.log(response)
-                
+                console.log(response.entry.quantity);
+                $('#get_quantity').val(response.entry.quantity);
+                $('#quantity_instock').text(response.entry.quantity+" in stock")
+                if(response.entry.quantity>0){
+                    $('#quantity_instock').show();
+                    $('#out_of_stock').css('display','none');
+
+                }else if(response.entry.quantity==0){
+                    $('#out_of_stock').show();
+                    $('#quantity_instock').css('display','none');
+                }
             }
         })
     })
