@@ -28,7 +28,7 @@ Order History
                                     <tr>
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                         <td>{{ $item->tracking_no }}</td>
-                                        <td>{{ $item->total_amount }}</td>
+                                        <td>${{ $item->total_amount }}</td>
                                         <td>{{ $item->status == '0' ?'processing' : 'shipped' }}</td>
                                         <td>
                                             <a href="{{ url('view-order/'.$item->id) }}" >View Order Details</a>
