@@ -14,7 +14,7 @@
 
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <label>Description</label>
+                    <label>Description message:</label>
                     <textarea name="description" rows="3" class="form-control">@if(isset($description)){{$description->description}}@endif</textarea>
                     <div class="col-md-12 mt-1">
                         <button type="submit" class="btn btn-primary">Add/Edit</button>

@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="">Select a Category</label>
-                        <select class="form-select" name="category_id" >
+                        <select class="form-select select-padding" name="category_id" >
                             <option value="">Select a Category</option>
                             @foreach ($category as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>

@@ -11,9 +11,9 @@ Ecommerce
     <div class="container">
         <div class="row">
             <div class="mb-4">
-                <h2>About Us</h2>
+                <h2 class="center-text">About Us</h2>
                 <div>
-                    <p id="description">@if(isset($description)){{$description->description}}@endif</p>
+                    <p class="center-text" id="description">@if(isset($description)){{$description->description}}@endif</p>
                 </div>
             </div>
 

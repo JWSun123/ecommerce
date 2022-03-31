@@ -40,13 +40,13 @@
                 @csrf
                 <label for="">Size</label>
                 <input name = "product_id" hidden value = "{{ $product_id }}">
-                <select name="size_id" class = "form-select sizes " id = "sizes">
+                <select name="size_id" class = "form-select sizes select-padding" id = "sizes">
                     @foreach ($sizes as $size)
                     <option value="{{ $size->id }}">{{ $size->size }}</option>
                 @endforeach
                 </select>
                 <label for="">Color</label>
-                <select name="color_id" class = "form-select colors " id = "colors">
+                <select name="color_id" class = "form-select colors select-padding" id = "colors">
                     @foreach ($colors as $color)
                     <option value="{{ $color->id }}">{{ $color->color }}</option>
                 @endforeach
