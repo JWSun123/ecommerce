@@ -33,7 +33,6 @@ class ProductController extends Controller
         $product->brand = $request->input('brand');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
-        $product->quantity = $request->input('quantity');
         $product->status = $request->input('status') == TRUE ? '1':'0';
         $product->meta_title = $request->input('meta_title');
         $product->meta_keywords = $request->input('meta_keywords');

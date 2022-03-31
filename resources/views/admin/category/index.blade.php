@@ -30,6 +30,7 @@
                                 <a href="{{ url('edit-category/'.$value->id) }}" class="btn">Edit</a>
                                 <a href="{{ url('delete-category/'.$value->id) }}" class="btn btn-danger">Delete</a>
                             </td>
+
                         </tr>
                     @endforeach
 

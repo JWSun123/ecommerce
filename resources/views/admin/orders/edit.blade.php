@@ -50,11 +50,11 @@ Order Detail
                                     <tbody>
                                         @foreach ($order->orderitems as $item)
                                             <tr>
-                                                <td>{{ $item->products->name }}</td>
+                                                <td>{{ $item->entries->product->name }}</td>
                                                 <td>{{ $item->quantity }}</td>
                                                 <td>{{ $item->price }}</td>
                                                 <td>
-                                                    <img src="{{ asset('assets/uploads/products/'.$item->products->image) }}" width="50px" alt="Product Image">
+                                                    <img src="{{ asset('assets/uploads/products/'.$item->entries->product->image) }}" width="50px" alt="Product Image">
                                                 </td>
                                             </tr>
                                         @endforeach
