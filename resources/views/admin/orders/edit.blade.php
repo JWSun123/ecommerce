@@ -60,8 +60,8 @@ Order Detail
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <h4 class="px-2">Total Amount: <span class="float-end">{{ $order->total_amount }}</span> </h4>
-                                <h6 class="px-2">Payment Method: {{ $order->payment_mode }}</h6>
+                                <h4 class="px-2">Total Amount: <span class="float-end">${{ $order->total_amount }}</span> </h4>
+                                <h6 class="px-2">Payment Method: {{ $order->payment_mode == '1' ?'Credit Card' : 'Debit Card' }}</h6>
                                 <hr>
                                 <div class = "mt-4">
                                     <label for=""><h4>Order Status</h4></label>
