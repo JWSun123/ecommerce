@@ -15,9 +15,21 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="">Role</label>
-                            <div class="p-2 border">{{ $user->role_as == '0'? 'User':'Admin' }}</div>
+                            <form action="{{ url('update-role/'.$user->id) }}" method="POST" enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                            <label for="">Role: </label>
+                            <select class="form-select w-100" name = "role_as" value = "">
+                                <option value="0" {{$user->role_as == '0'? "selected":""}}>Customer</option>
+                                <option value="1" {{$user->role_as == '1'? "selected":""}}>Admin</option>
+                            </select>
+                            <div class="col-md-12 mt-3">
+                                <button type="submit" class="btn btn-primary">Update Role</a>
+                            </div>
+                            </form>
+
                         </div>
+
                         <div class="col-md-4 mt-3">
                             <label for="">First Name</label>
                             <div class="p-2 border">{{ $user->name }}</div>
@@ -26,7 +38,7 @@
                             <label for="">Email</label>
                             <div class="p-2 border">{{ $user->email }}</div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4">
                             <label for="">Phone</label>
                             <div class="p-2 border">{{ $user->phone }}</div>
                         </div>
@@ -39,7 +51,7 @@
                             <div class="p-2 border">{{ $user->apartment }}</div>
                         </div>
 
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4">
                             <label for="">City</label>
                             <div class="p-2 border">{{ $user->city }}</div>
                         </div>
@@ -51,7 +63,7 @@
                             <label for="">Country</label>
                             <div class="p-2 border">{{ $user->country }}</div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4">
                             <label for="">Postal Code</label>
                             <div class="p-2 border">{{ $user->postalcode }}</div>
                         </div>

@@ -18,7 +18,7 @@
                     @endif
                 </h2>
             </div>
-            
+
             @foreach ($products as $product)
 
                 <div class="col-md-3 mb-5">
@@ -27,7 +27,7 @@
                         <img class = "product-image" src="{{ asset('assets/uploads/products/'.$product->image) }}" alt="Product image">
                         <div class="card-body">
                             <h5>{{ $product->name }}</h5>
-                            <span class="float-start">{{ $product->price }}</span>
+                            <span class="float-start">${{ $product->price }}</span>
                             <span class="float-end">{{ $product->brand }}</span>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     <!-- </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div> -->
 @endsection
 

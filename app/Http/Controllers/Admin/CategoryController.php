@@ -33,7 +33,7 @@ class CategoryController extends Controller
         $category->meta_keywords = $request->input('meta_keywords');
         $category->meta_descrip = $request->input('meta_description');
         $category->save();
-        return redirect('/dashboard')->with('status',"Category Added Successfully");
+        return redirect('categories')->with('status',"Category Added Successfully");
     }
 
     public function edit($id){
@@ -67,13 +67,18 @@ class CategoryController extends Controller
 
     public function delete($id){
         $category = Category::find($id);
-        if($category->image){
-            $path = 'assets/uploads/category/'.$category->image;
-            if(File::exists($path)){
-                File::delete($path);
-            }
+        if(count($category->products) > 0){
+            return redirect('categories')->with('status',"Category cannot be deleted! Delete products first!");
         }
-        $category->delete();
-        return redirect('categories')->with('status',"Category Deleted Successfully");
+        else{
+            if($category->image){
+                $path = 'assets/uploads/category/'.$category->image;
+                if(File::exists($path)){
+                    File::delete($path);
+                }
+            }
+            $category->delete();
+            return redirect('categories')->with('status',"Category Deleted Successfully");
+        }
     }
 }

@@ -33,14 +33,25 @@ class AttributeController extends Controller
 
     public function deleteSize($id){
         $size = Size::find($id);
-        $size->delete();
-        return redirect('attributes')->with('status',"Size Deleted Successfully");
+        if (count($size->entries) <= 0){
+            $size->delete();
+            return redirect('attributes')->with('status',"Size Deleted Successfully");
+        }
+        else{
+            return redirect('attributes')->with('status',"Size cannot be deleted! Delete product entry first!");
+        }
     }
 
     public function deleteColor($id){
         $color = Color::find($id);
-        $color->delete();
-        return redirect('attributes')->with('status',"Color Deleted Successfully");
+        if (count($color->entries) <= 0){
+            $color->delete();
+            return redirect('attributes')->with('status',"Color Deleted Successfully");
+        }
+        else{
+            return redirect('attributes')->with('status',"Color cannot be deleted! Delete product entry first!");
+        }
+
     }
 
     public function viewEntry($id){

@@ -12,5 +12,7 @@ class Size extends Model
     protected $fillable = [
         'size'
     ];
-
+    public function entries(){
+        return $this->hasMany(Entry::class);
+    }
 }
