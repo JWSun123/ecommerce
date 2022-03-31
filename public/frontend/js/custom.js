@@ -68,9 +68,7 @@
                 'entry_id':entry_id,
             },
             success: function (response) {
-                loadcart();
-                $('.cartitems').load(location.href + " .cartitems");
-                swal("", response.status, "success");
+                 window.location.reload();
             }
         });
     });
