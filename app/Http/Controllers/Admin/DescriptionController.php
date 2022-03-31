@@ -14,11 +14,11 @@ class DescriptionController extends Controller
             $description = new Description();
             $description->description = $request->input('description');
             $description->save();
-            return view('admin.index', compact('description'));
+            return redirect('/dashboard')->with(['description' => $description])->with('status', 'The description has been modified.');
         }
         $description->description = $request->input('description');
         $description->save();
-        return view('admin.index', compact('description'));
+        return redirect('/dashboard')->with(['description' => $description])->with('status', 'The description has been modified.');
     }
 
     public function show(){
