@@ -62,7 +62,7 @@ Order Detail
                                     </tbody>
                                 </table>
                                 <h4 class="px-2">Total Amount: <span class="float-end">${{ $order->total_amount }}</span> </h4>
-                                <h6 class="px-2">Payment Method: {{ $order->payment_mode }}</h6>
+                                <h6 class="px-2">Payment Method: {{ $order->payment_mode == '1' ?'Credit Card' : 'Debit Card' }}</h6>
                             </div>
                         </div>
 
