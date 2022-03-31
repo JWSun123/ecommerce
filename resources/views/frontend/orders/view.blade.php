@@ -53,7 +53,7 @@ Order Detail
                                             <tr>
                                                 <td>{{ $item->entries->product->name }}</td>
                                                 <td>{{ $item->quantity }}</td>
-                                                <td>{{ $item->entries->product->price }}</td>
+                                                <td>${{ $item->entries->product->price }}</td>
                                                 <td>
                                                     <img src="{{ asset('assets/uploads/products/'.$item->entries->product->image) }}" width="50px" alt="Product Image">
                                                 </td>
@@ -61,7 +61,7 @@ Order Detail
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <h4 class="px-2">Total Amount: <span class="float-end">{{ $order->total_amount }}</span> </h4>
+                                <h4 class="px-2">Total Amount: <span class="float-end">${{ $order->total_amount }}</span> </h4>
                                 <h6 class="px-2">Payment Method: {{ $order->payment_mode }}</h6>
                             </div>
                         </div>
