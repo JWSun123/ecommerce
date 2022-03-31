@@ -24,7 +24,7 @@ Orders
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $item)
+                                @foreach ($orders->sortByDesc('created_at') as $item)
                                     <tr>
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                         <td>{{ $item->id }}</td>

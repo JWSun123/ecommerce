@@ -68,7 +68,7 @@ Order Detail
                                     <form action = "{{url('update-order/'.$order->id)}}" method = "post">
                                         @csrf
                                         @method('PUT')
-                                        <select class="form-select" name = "status">
+                                        <select class="form-select select-padding" name = "status">
                                             <option selected>Select Status</option>
                                             <option {{$order->status == '0'? 'selected':''}} value="0">Processing</option>
                                             <option value="1" {{$order->status == '1'? 'selected':''}}>Shipped</option>
