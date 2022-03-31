@@ -14,7 +14,7 @@ Ecommerce
                 <h2>Products</h2>
             </div>
             @foreach ($products as $product)
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <a href="{{ url('view-product/'.$product->id) }}">
                         <div class="card zoom">
                             <img class = "product-image" src="{{ asset('assets/uploads/products/'.$product->image) }}" alt="Product image">

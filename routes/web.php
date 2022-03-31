@@ -29,6 +29,7 @@ Route::post('add-to-cart', [App\Http\Controllers\Frontend\CartController::class,
 Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteProduct']);
 Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updateCart']);
 
+Route::get('about-us', [App\Http\Controllers\Admin\DescriptionController::class, 'show']);
 
 
 
@@ -52,7 +53,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index']);
 
     //About us:
-    Route::get('about-us', [App\Http\Controllers\Admin\DescriptionController::class, 'show']);
     Route::post('description', [App\Http\Controllers\Admin\DescriptionController::class, 'about']);
 
     //Order:
