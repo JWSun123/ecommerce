@@ -13,6 +13,9 @@
             <a class="nav-link" href="{{ url('category') }}">Category</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{ url('about-us') }}">About Us</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{url('cart')}}"><span class="material-icons">
                 shopping_cart
                 </span></a>
@@ -41,6 +44,13 @@
                         Order History
                     </a>
                 </li>
+                @if (Auth::user()->role_as == 1)
+                <li>
+                    <a class="dropdown-item" href="{{ url('dashboard') }}">
+                        Dashboard
+                    </a>
+                </li>
+                @endif
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

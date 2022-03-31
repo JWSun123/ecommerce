@@ -18,29 +18,50 @@ class AttributeController extends Controller
     }
 
     public function addSize(Request $request){
-        $size = new Size();
-        $size->size = $request->input('size');
-        $size->save();
+        $newSize = new Size();
+        $size = $request->input('size');
+        $count = Size::where('size', '=', $size)->count();
+        if($count > 0) {
+            return redirect('attributes')->with('status',"Size {$size} already exists");
+        }
+        $newSize->size = $size;
+        $newSize->save();
         return redirect('attributes')->with('status',"Size Added Successfully");
     }
 
     public function addColor(Request $request){
-        $color = new Color();
-        $color->color = $request->input('color');
-        $color->save();
+        $newColor = new Color();
+        $color = $request->input('color');
+        $count = Color::where('color', '=', $color)->count();
+        if($count > 0) {
+            return redirect('attributes')->with('status',"Color {$color} already exists");
+        }
+        $newColor->color = $color;
+        $newColor->save();
         return redirect('attributes')->with('status',"Color Added Successfully");
     }
 
     public function deleteSize($id){
         $size = Size::find($id);
-        $size->delete();
-        return redirect('attributes')->with('status',"Size Deleted Successfully");
+        if (count($size->entries) <= 0){
+            $size->delete();
+            return redirect('attributes')->with('status',"Size Deleted Successfully");
+        }
+        else{
+            return redirect('attributes')->with('status',"Size cannot be deleted! Delete product entry first!");
+        }
     }
 
     public function deleteColor($id){
         $color = Color::find($id);
-        $color->delete();
-        return redirect('attributes')->with('status',"Color Deleted Successfully");
+        if (count($color->entries) <= 0){
+            $color->delete();
+            return redirect('attributes')->with('status',"Color Deleted Successfully");
+        }
+        else{
+            return redirect('attributes')->with('status',"Color cannot be deleted! Delete product entry first!");
+        }
+
     }
 
     public function viewEntry($id){
@@ -53,10 +74,35 @@ class AttributeController extends Controller
 
     public function addEntry(Request $request){
         $entry = new Entry();
-        $entry->product_id = $request->input('product_id');
-        $entry->size_id = $request->input('size_id');
-        $entry->color_id = $request->input('color_id');
-        $entry->quantity = $request->input('quantity');
+        $product_id = $request->input('product_id');
+        $size_id = $request->input('size_id');
+        $color_id = $request->input('color_id');
+        $quantity = $request->input('quantity');
+
+        $entry->product_id = $product_id;
+        $entry->size_id = $size_id;
+        $entry->color_id = $color_id;
+        $entry->quantity = $quantity;
+
+        $color = Color::find($color_id);
+        $size = Size::find($size_id);
+
+        $db = Entry::where('product_id', '=', $product_id);
+        $whereEverything = ['product_id' => $product_id, 'size_id' => $size_id, 'color_id' => $color_id, 'quantity' => $quantity];
+        $whereDiffQty = ['product_id' => $product_id, 'size_id' => $size_id, 'color_id' => $color_id];
+
+        if ($db->get() !== null) {
+            if (Entry::where($whereEverything)->count() > 0) {
+                return redirect('view-entry/'.$product_id)->with('status', "This entry already exist for size {$size->size} and color {$color->color}. Please modify the quantity.");
+            } else if (Entry::where($whereDiffQty)->count() > 0) {
+                $entry_id = Entry::where($whereDiffQty)->value('id');
+                $db = Entry::find($entry_id);
+                $db->quantity = $quantity;
+                $db->update();
+                return redirect('view-entry/'.$product_id)->with('status', "The quantity has been modified for size {$size->size} and color {$color->color}.");
+            }
+
+        }
         $entry->save();
         return redirect('view-entry/'.$entry->product_id)->with('status', "Product Entry Added Successfully!");
     }

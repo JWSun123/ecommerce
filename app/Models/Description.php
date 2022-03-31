@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Color extends Model
+class Description extends Model
 {
+    public $timestamps = false;
     use HasFactory;
-    protected $table = 'colors';
+    protected $table = 'description';
     protected $fillable = [
-        'color'
+        'description'
     ];
-
-    public function entries(){
-        return $this->hasMany(Entry::class);
-    }
 }
