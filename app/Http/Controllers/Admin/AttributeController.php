@@ -53,10 +53,20 @@ class AttributeController extends Controller
 
     public function addEntry(Request $request){
         $entry = new Entry();
-        $entry->product_id = $request->input('product_id');
-        $entry->size_id = $request->input('size_id');
-        $entry->color_id = $request->input('color_id');
-        $entry->quantity = $request->input('quantity');
+
+        $product_id = $entry->product_id = $request->input('product_id');
+        $dbProduct_id = Entry::find($product_id);
+
+        $size_id = $entry->size_id = $request->input('size_id');
+        $color_id = $entry->color_id = $request->input('color_id');
+        $quantity = $entry->quantity = $request->input('quantity');
+        if($dbProduct_id->color_id == $color_id && $dbProduct_id->size_id == $size_id && $dbProduct_id->quantity == $quantity){
+            return redirect('view-entry/'.$entry->product_id)->with('status', "This entry already exist for {$dbProduct_id->size->size} and {$dbProduct_id->color->color}. Please modify the quantity.");
+        } else if ($dbProduct_id->quantity != $quantity) {
+            $dbProduct_id->quantity = $request->input('quantity');
+            $dbProduct_id->save();
+            return redirect('view-entry/'.$entry->product_id)->with('status', "The quantity has been modified for {$dbProduct_id->size->size} and {$dbProduct_id->color->color}.");
+        }
         $entry->save();
         return redirect('view-entry/'.$entry->product_id)->with('status', "Product Entry Added Successfully!");
     }

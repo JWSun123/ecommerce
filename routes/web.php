@@ -51,6 +51,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index']);
 
+    //About us:
+    Route::get('about-us', [App\Http\Controllers\Admin\DescriptionController::class, 'show']);
+    Route::post('description', [App\Http\Controllers\Admin\DescriptionController::class, 'about']);
+
     //Order:
     Route::get('orders', [App\Http\Controllers\Admin\OrderController::class, 'index']);
     Route::get('admin/view-order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'editOrder']);

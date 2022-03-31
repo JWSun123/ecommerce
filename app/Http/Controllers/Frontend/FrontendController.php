@@ -16,7 +16,6 @@ class FrontendController extends Controller
         $products = Product::all()->take(10);
         return view('frontend.index', compact('products'));
     }
-
     public function category(){
         $categories = Category::all();
         return view('frontend.category', compact('categories'));

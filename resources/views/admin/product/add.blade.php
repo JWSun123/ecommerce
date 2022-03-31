@@ -10,7 +10,7 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="">Selecgt a Category</label>
+                        <label for="">Select a Category</label>
                         <select class="form-select" name="category_id" >
                             <option value="">Select a Category</option>
                             @foreach ($category as $item)
