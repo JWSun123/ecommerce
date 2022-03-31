@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Entry;
 use App\Models\Order;
 use App\Models\Payment;
-use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +35,7 @@ class CheckoutController extends Controller
     }
 
     public function placeOrder(Request $request){
-        if($request->input('storedpayment') == NULL){
+        if($request->input('storedpayment') <= 0){
             $payment = new Payment();
             $payment->user_id = Auth::id();
             $payment->payment_method = $request->input('method');

@@ -126,7 +126,7 @@
                                     <div class="col-md-6">
                                         Choose Stored Payment
                                         <select name="storedpayment" class = "form-select storedpayment" id = "storedpayment">
-                                            <option value="">Add New Payment Method</option>
+                                            <option value="-1">Add New Payment Method</option>
                                             @foreach ($payments as $payment)
                                             <option value="{{ $payment->id }}">{{ $payment->card_number }}</option>
                                         @endforeach
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="col-md-6">
                                     Choose Payment Method
-                                    <select class="form-select paymentinfo" name = "method" value = '' id = "method">
+                                    <select class="form-select paymentinfo" name = "method" id = "method">
                                         <option selected>Payment Method</option>
                                         <option value="1">Credit Card</option>
                                         <option value="2">Debit Card</option>
